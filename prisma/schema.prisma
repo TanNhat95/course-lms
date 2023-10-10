@@ -24,7 +24,7 @@ model Course {
   updatedAt DateTime @updatedAt
 
   attachments Attachment[]
-  chapter     Chapter[]
+  chapters    Chapter[]
   purchase    Purchase[]
 
   @@index([categoryId])
