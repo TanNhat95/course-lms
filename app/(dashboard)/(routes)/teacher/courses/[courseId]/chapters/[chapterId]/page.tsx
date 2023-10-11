@@ -1,11 +1,12 @@
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs"
-import { ArrowLeft, LayoutDashboard } from "lucide-react";
+import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import ChapterTitleForm from "./_components/chapter-title-form";
 import ChapterDescriptionForm from "./_components/chapter-description-form";
+import ChapterAccessForm from "./_components/chapter-access-form";
 
 
 const ChapterIdPage = async ({params}: {params: {courseId: string, chapterId: string}}) => {
@@ -74,17 +75,34 @@ const ChapterIdPage = async ({params}: {params: {courseId: string, chapterId: st
                         </div>
 
                         <ChapterTitleForm
-                            chapterId={chapter.id}
-                            key={chapter.id}
-                            courseId={chapter.courseId}
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
                             initialData={chapter}
                         />
                         <ChapterDescriptionForm
-                            chapterId={chapter.id}
-                            courseId={chapter.courseId}
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
                             initialData={chapter}
-                            key={chapter.id}
                         />
+                    </div>
+                    <div className="">
+                        <div className="flex items-center gap-x-2">
+                            <IconBadge icon={Eye} />
+                            <h2 className="text-xl">
+                                Access Settings
+                            </h2>
+                        </div>
+                        <ChapterAccessForm
+                            chapterId={params.chapterId}
+                            courseId={params.courseId}
+                            initialData={chapter}
+                        />
+                    </div>
+                </div>
+                <div>
+                    <div className="flex items-center gap-x-2">
+                        <IconBadge icon={Video} />
+                        <h2>Add a video</h2>
                     </div>
                 </div>
             </div>
