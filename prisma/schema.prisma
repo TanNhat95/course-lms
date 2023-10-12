@@ -5,7 +5,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 model Course {
@@ -25,9 +26,10 @@ model Course {
 
   attachments Attachment[]
   chapters    Chapter[]
-  purchase    Purchase[]
+  purchases   Purchase[]
 
   @@index([categoryId])
+  @@fulltext([title])
 }
 
 model Attachment {
