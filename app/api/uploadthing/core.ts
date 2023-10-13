@@ -9,7 +9,7 @@ const handleAuth = () => {
 
   const isAuthorized = isTeacher(userId)
 
-  if (!userId || isAuthorized) {
+  if (!userId) {
     throw new Error('Unauthorized')
   }
   return {
